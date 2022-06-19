@@ -2,7 +2,6 @@
  * 추석 트래픽
  * https://programmers.co.kr/learn/courses/30/lessons/17676
  * 
- * ! 2번, 17번 테스트케이스 오류발생 , 재확인 필요
  */
 
 function solution(lines) {
@@ -22,11 +21,11 @@ function solution(lines) {
 
     let max = 0;
     let cnt = 1;
-
+    let startSec = 0;
     // 최대 트래픽 개수 구하기
-    for (let i = 0; i < traffic.length / 2; i += 2) {
+    for (let i = 0; i < traffic.length; i += 2) {
+        startSec = startSec >= traffic[i] ? startSec : traffic[i];  // 시작 초 (테스트18 시간초과 해결위해 시간초 비교후 할당)
 
-        let startSec = traffic[i];  // 시작 초
         while (startSec <= traffic[i + 1]) {
             cnt = 1;
             let endSec = startSec + 1000 - 1; // 1초 뒤
